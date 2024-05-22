@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     //private static final String TAG = "MainActivity_4";
-    private static final int NUM_COLUMNS = 1;
+    private static final int NUM_COLUMNS = 2;
 
     private ArrayList<String> mImageUrls = new ArrayList<>();
     private ArrayList<String> mNames = new ArrayList<>();

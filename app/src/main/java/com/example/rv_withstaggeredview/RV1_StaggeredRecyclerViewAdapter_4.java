@@ -1,11 +1,14 @@
 package com.example.rv_withstaggeredview;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,7 +40,7 @@ public class RV1_StaggeredRecyclerViewAdapter_4 extends RecyclerView.Adapter<RV1
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(ViewHolder holder,@SuppressLint("RecyclerView") final int position) {
         Log.d(TAG, "onBindViewHolder: called.");
 
         RequestOptions requestOptions = new RequestOptions()
@@ -49,6 +52,16 @@ public class RV1_StaggeredRecyclerViewAdapter_4 extends RecyclerView.Adapter<RV1
                 .into(holder.image);
 
         holder.name.setText(mNames.get(position));
+        holder.lin_lay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(mContext, details.class);
+                intent.putExtra("image_url",mImageUrls.get(position));
+                intent.putExtra("image_name",mNames.get(position));
+                mContext.startActivity(intent);
+
+            }
+        });
 
         /*holder.image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,11 +82,14 @@ public class RV1_StaggeredRecyclerViewAdapter_4 extends RecyclerView.Adapter<RV1
 
         ImageView image;
         TextView name;
+        LinearLayout lin_lay;
 
         public ViewHolder(View itemView) {
             super(itemView);
             this.image = itemView.findViewById(R.id.imageview_widget);
             this.name = itemView.findViewById(R.id.name_widget);
+            lin_lay=itemView.findViewById(R.id.custom_lay);
+
         }
     }
 }
